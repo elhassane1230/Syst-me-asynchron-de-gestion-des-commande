@@ -25,9 +25,11 @@ Deploiement Docker :
   apres il sufit d'ouvrir votre navigateur => http://localhost:8000/
 
 
-projet réaliser par :
+Projet réaliser par :
   - Assellaou Mouhcine
   - Bouyahyaoui Soufiane
   - Talha Elhassane
   - Turgut Syabend
 
+Encadré par :
+  - Monsieur Taher Yehia
