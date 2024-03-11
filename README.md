@@ -5,13 +5,13 @@ Dans le cadre des modules "Gestion de processus métiers" et "Gestion de donnée
 Installation des dependances : 
 
    - pip install SQLAlchemy
-   - pip pydantic
-   - pip fastapi
-   - pip typing_extensions
-   - pip plotly
-   - pip uvicorn
-   - pip python-multipart
-   - pip Jinja2
+   - pip install pydantic
+   - pip install fastapi
+   - pip install typing_extensions
+   - pip install plotly
+   - pip install uvicorn
+   - pip install python-multipart
+   - pip install Jinja2
 
 lancer le notebook 'projet.ipynb' pour remplir la base de données et aussi pour lancer notre API  
 Apres dans votre navigateur : http://127.0.0.1:8000 ça vous deriger directement vers une page login
@@ -24,4 +24,10 @@ Deploiement Docker :
   lancer l'image localement => docker run -d -p 8000:8000 projet
   apres il sufit d'ouvrir votre navigateur => http://localhost:8000/
 
+
+projet réaliser par :
+  - Assellaou Mouhcine
+  - Bouyahyaoui Soufiane
+  - Talha Elhassane
+  - Turgut Syabend
 
