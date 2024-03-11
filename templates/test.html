@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management Interface</title>
+</head>
+<body>
+    <h1>Order Management Interface</h1>
+    
+    <h2>Place Order</h2>
+    <form action="/place_order/" method="POST">
+        <label for="item">Item:</label><br>
+        <input type="text" id="item" name="item" required><br>
+        <label for="quantity">Quantity:</label><br>
+        <input type="number" id="quantity" name="quantity" required><br>
+        <label for="client_id">Client ID:</label><br>
+        <input type="number" id="client_id" name="client_id" required><br>
+        <button type="submit">Place Order</button>
+    </form>
+
+    <h2>Confirm or Refuse Quote</h2>
+    <form action="/confirm_quote/" method="POST">
+        <label for="quote_id">Quote ID:</label><br>
+        <input type="number" id="quote_id" name="quote_id" required><br>
+        <label for="confirmation">Confirmation:</label><br>
+        <select id="confirmation" name="confirmation" required>
+            <option value="true">Confirm</option>
+            <option value="false">Refuse</option>
+        </select><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Validate or Refuse Quote</h2>
+    <form action="/validate_quote/" method="POST">
+        <label for="quote_id">Quote ID:</label><br>
+        <input type="number" id="quote_id" name="quote_id" required><br>
+        <label for="validation">Validation:</label><br>
+        <select id="validation" name="validation" required>
+            <option value="true">Validate</option>
+            <option value="false">Refuse</option>
+        </select><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Approve or Reject Service Completion</h2>
+    <form action="/approve_service_completion/" method="POST">
+        <label for="service_completion_id">Service Completion ID:</label><br>
+        <input type="number" id="service_completion_id" name="service_completion_id" required><br>
+        <label for="approval">Approval:</label><br>
+        <select id="approval" name="approval" required>
+            <option value="true">Approve</option>
+            <option value="false">Reject</option>
+        </select><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h1>Order Management Interface</h1>
+    <h2>Orders</h2>
+    <table border='1'>
+        <tr>
+            <th>Order ID</th>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Status</th>
+        </tr>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.item }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ "Validated" if order.validated else "Pending" }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

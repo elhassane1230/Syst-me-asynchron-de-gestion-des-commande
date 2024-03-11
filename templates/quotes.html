@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation des devis</title>
+</head>
+<body>
+    <h1>Liste des devis</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Montant</th>
+                <th>Validé</th>
+                <th>Confirmé</th>
+                <th>Id client</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for quote in quotes %}
+            <tr>
+                <td>{{ quote.id }}</td>
+                <td>{{ quote.amount }}</td>
+                <td>{{ "Oui" if quote.validated else "Non" }}</td>
+                <td>{{ "Oui" if quote.confirmed else "Non" }}</td>
+                <td>{{quote.client_id}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

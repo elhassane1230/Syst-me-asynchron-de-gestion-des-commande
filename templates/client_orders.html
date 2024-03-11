@@ -1,0 +1,24 @@
+ <h3>Liste des commandes</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Item</th>
+                                <th>Quanitité</th>
+                                <th>Valider</th>
+                                <th>Executé</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in client_orders %}
+                            <tr>
+                                <td>{{ order.id }}</td>
+                                <td>{{ order.item }}</td>
+                                <td>{{order.quantity}}</td>
+                                <td>{{ "Oui" if order.validated else "Non" }}</td>
+                                <td>{{ "Oui" if order.executed else "Non" }}</td>
+                                
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>

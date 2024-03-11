@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client</title>
+    <style>
+        /* Style pour le bouton de logout */
+        #logout-btn {
+            float: right;
+            margin-top: 7px;
+            margin-right: 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Style pour le navbar */
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            position: relative;
+            border-radius: 10px;
+        }
+
+        /* Style pour le titre du navbar */
+        .navbar-title {
+            color: white;
+            font-size: 20px;
+            padding: 14px 16px;
+            text-decoration: none;
+            float: left;
+        }
+
+        /* Style pour le bouton de logout dans le navbar */
+        .navbar .logout-btn {
+            float: right;
+        }
+
+        /* Style pour les conteneurs de devis et de commandes */
+        .dashboard-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .dashboard-section {
+            width: 45%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Style pour les boutons d'action */
+        .action-btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Style pour les tableaux */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a class="navbar-title" href="#">Bienvenue Client</a>
+        <a id="logout-btn" class="logout-btn" href="/logout/">Logout</a>
+    </div>
+    <!-- Conteneur de la dashboard -->
+    <div class="dashboard-container">
+        <!-- Section des devis -->
+        <div class="dashboard-section">
+            <h2>Mes Devis</h2>
+            <div id="quotes-container">
+                <h3>Liste des devis</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Montant</th>
+                            <th>Validé</th>
+                            <th>Confirmé</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for quote in client_quotes %}
+                        <tr>
+                            <td>{{ quote.id }}</td>
+                            <td>{{ quote.amount }}</td>
+                            <td>{{ "Oui" if quote.validated else "Non" }}</td>
+                            <td>{{ "Oui" if quote.confirmed else "Non" }}</td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <button class="action-btn" onclick="goToConfirmQuote()" style="margin-left: 35%; margin-top: 10%">Confirmer Devis</button>
+        </div>
+
+        <!-- Section des commandes -->
+        <div class="dashboard-section">
+            <h2>Mes Commandes</h2>
+            <div id="orders-container">
+                <h3>Liste des commandes</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Item</th>
+                            <th>Quantité</th>
+                            <th>Validé</th>
+                            <th>Exécuté</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in client_orders %}
+                        <tr>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.item }}</td>
+                            <td>{{ order.quantity }}</td>
+                            <td>{{ "Oui" if order.validated else "Non" }}</td>
+                            <td>{{ "Oui" if order.executed else "Non" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div style="margin-left: 30%;margin-top: 10%;">
+                <button class="action-btn" onclick="goToPlaceOrder()">Passer Commande</button>
+            <button class="action-btn" onclick="goToVerifyServiceCompletion()">Vérifier Service</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script pour les actions des boutons -->
+    <script>
+        function goToConfirmQuote() {
+            window.location.href = "/confirm_quote";
+        }
+
+        function goToPlaceOrder() {
+            window.location.href = "/place_order";
+        }
+
+        function goToVerifyServiceCompletion() {
+            window.location.href = "/verify_service_completion";
+        }
+    </script>
+</body>
+</html>
